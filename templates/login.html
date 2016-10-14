@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+  
+{% block title %}URL Shortener{% endblock %}
+  
+{% block content %}
+<div class="panel panel-default">
+    Please login to use this great URL shortener:
+ <div class="panel-body">
+     <form name="search_form" action="{% url 'login' %}" method="post">
+        <div class="col-sm-9">
+            {% if showError %}
+                {{ errorText }}
+            {% endif %}
+            <input type="text" name="username" class="form-control input-sm"/>
+            <input type="password" name="password" class="form-control input-sm"/>
+        </div>
+
+         <div class="col-sm-3">
+            {% csrf_token %}
+            <input type="submit" name="submit" value="Submit">
+         </div>
+     </form>
+ </div>
+
+
+{% endblock %}

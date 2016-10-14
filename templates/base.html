@@ -1,0 +1,25 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+ <title>{% block title %}Welcome to URLShortener{% endblock %}</title>
+ {% load staticfiles %}
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+ <link rel="stylesheet" type="text/css" href="{% static 'shortenersite/css/custom.css' %}" />
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+<div id="wrap">
+<header>
+ <h1><a href="{% url 'home' %}" class="shortener">URL Shortner</a><small>Shorten the URL</small></h1>
+</header>
+
+<div id="content">
+{% block content %}
+
+{% endblock %}
+</div>
+</div>
+</body>
+</html>

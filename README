@@ -1,0 +1,7 @@
+I designed this URL shortener to be a giant hash table where 6 character sequence of
+random characters is used for the short URL and is used to look up the full URL.
+
+This 6 character sequence is gauranteed to be unique.  I required this as an
+optimization so that there doesn't need to be further decoding in the lookup
+process.
+

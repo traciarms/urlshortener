@@ -1,0 +1,33 @@
+#content {
+    margin-left: 20px;
+    margin-top: 20px;
+    margin-bottom: 60px;
+}
+
+a:hover{
+text-decoration: none;
+}
+
+#shortener {
+    margin-left: 100px;
+    text-decoration-color: cadetblue;
+}
+
+header {
+    border-bottom: 1px solid #eeeeee;
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+    clear: both;
+}
+
+#wrap {
+max-width: 700px;
+margin: 5px 10px 10px 10px;
+padding: 10px;
+text-align: left;
+}
+
+#url-result {
+color: #00e000;
+display: hidden;
+}

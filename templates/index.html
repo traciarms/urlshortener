@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+  
+{% block title %}URL Shortener{% endblock %}
+  
+{% block content %}
+  
+<div class="panel panel-default">
+ <div class="panel-body">
+     <form name="search_form" action="{% url 'shortenurl' %}" method="post">
+        <div class="col-sm-9">
+            {% if showError %}
+                {{ errorText }}
+            {% endif %}
+            <input type="text" name="url" id="url" class="form-control input-sm" placeholder="http://www.somelongurlthatcanbeshortened.com" />
+        </div>
+
+         <div class="col-sm-3">
+            {% csrf_token %}
+            <input type="submit" name="submit" value="Submit">
+         </div>
+     </form>
+ </div>
+
+ <div class="panel-footer">
+     <span id="url-result">
+         {% if showURL %}
+            <a href="{{ shortenedURL }}" id="url-result">{{ shortenedURL }}</a>
+         {% else %}
+            Enter the URL above and click submit!
+         {% endif %}
+     </span></div>
+</div>
+{% endblock %}
