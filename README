@@ -1,7 +1,33 @@
-I designed this URL shortener to be a giant hash table where 6 character sequence of
-random characters is used for the short URL and is used to look up the full URL.
+To setup the project visit my github account at:  github.com/traciarms
 
-This 6 character sequence is gauranteed to be unique.  I required this as an
-optimization so that there doesn't need to be further decoding in the lookup
-process.
+git clone the urlshortener project into your directory.
+cd into the urlshortener directory run the following commands:
+./manage.py makemigrations
+./manage.py migrate
+./manage.py runserver
+
+
+
+
+The Performance design considerations:
+
+I designed this URL shortener to be a giant hash table where a 6 character
+sequence of random alpha-numeric characters are generated and used for the
+shortened URL and is used to look up the full URL in the hash table.
+
+This 6 character sequence is guaranteed to be unique.  I required this as an
+optimization so that there doesn't need to be further decoding in the full
+URL lookup process.
+
+Another concern for performance is that the data is never deleted - this
+feature could be added to the user interface (once the accounts are created)
+and the user could view their shortened urls and delete old ones if necessary.
+It could also be added as an asynchronous task in order to maintain the data.
+Or another option for data purge could be a date expiration since we are
+storing the date they were created.
+
+Another optimization could be to add in a filter into the code for malicious
+or bogus urls instead of just generating the short_id and storing them.  This
+will eliminate unneeded cluttering of the database
+
 
