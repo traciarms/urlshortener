@@ -2,6 +2,7 @@ To setup the project visit my github account at:  github.com/traciarms
 
 git clone the urlshortener project into your directory.
 cd into the urlshortener directory run the following commands:
+pip install -r requirements.txt
 ./manage.py makemigrations
 ./manage.py migrate
 ./manage.py runserver
