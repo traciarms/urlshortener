@@ -13,13 +13,24 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
+from django.conf.urls import url, include
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
 
+from shortenersite.views import index, redirect_original, shorten_url, \
+    create_user, urlset
+
 urlpatterns = [
+    url(r'^logout/', auth_views.logout, {'next_page': "/"},
+        name='logout'),
+    url(r'^login/', auth_views.login,
+        {'extra_context': {'next': '/'}}, name='login'),
+
+    url(r'^$', index, name='home'),
+    url(r'^register/', create_user, name='register'),
     url(r'^admin/', admin.site.urls),
-    url(r'^$', 'shortenersite.views.index', name='home'),
-    url(r'^(?P<short_id>\w{6})$', 'shortenersite.views.redirect_original', name='redirectoriginal'),
-    url(r'makeshort', 'shortenersite.views.shorten_url', name='shortenurl'),
+
+    url(r'^set/', urlset, name='urlset'),
+    url(r'^(?P<short_id>\w{6})$', redirect_original, name='redirectoriginal'),
+    url(r'makeshort', shorten_url, name='shortenurl'),
 ]

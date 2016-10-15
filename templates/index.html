@@ -1,33 +1,50 @@
 {% extends "base.html" %}
   
 {% block title %}URL Shortener{% endblock %}
-  
 {% block content %}
-  
-<div class="panel panel-default">
- <div class="panel-body">
-     <form name="search_form" action="{% url 'shortenurl' %}" method="post">
-        <div class="col-sm-9">
-            {% if showError %}
-                {{ errorText }}
-            {% endif %}
-            <input type="text" name="url" id="url" class="form-control input-sm" placeholder="http://www.somelongurlthatcanbeshortened.com" />
-        </div>
+    <div class="panel panel-default">
+     <div class="panel-body">
+        {% if user.userprofile.user_category == 'Q' %}
+             <form name="search_form" action="{% url 'shortenurl' %}" method="post">
+                <div class="col-sm-9">
+                    {% if showError %}
+                        {{ errorText }}
+                    {% endif %}
+                    <input type="text" name="url" id="url" class="form-control input-sm" placeholder="http://www.somelongurlthatcanbeshortened.com" />
+                </div>
 
-         <div class="col-sm-3">
-            {% csrf_token %}
-            <input type="submit" name="submit" value="Submit">
-         </div>
-     </form>
- </div>
+                 <div class="col-sm-3">
+                    {% csrf_token %}
+                    <input type="submit" name="submit" value="Submit">
+                 </div>
+             </form>
 
- <div class="panel-footer">
-     <span id="url-result">
-         {% if showURL %}
-            <a href="{{ shortenedURL }}" id="url-result">{{ shortenedURL }}</a>
-         {% else %}
-            Enter the URL above and click submit!
-         {% endif %}
-     </span></div>
-</div>
+             {% if urls_set %}
+                 <div class="col-sm-9">
+                    <br>
+                    <span class="url-result">
+                       Click <a href="{% url 'urlset' %}">here</a> to see your shortened URLS
+                    </span>
+                 </div>
+             {% endif %}
+        {% endif %}
+     </div>
+
+     <div class="panel-footer">
+        {% if user.userprofile.user_category == 'Q' %}
+             <span class="url-result">
+                 {% if showURL %}
+                    <a href="{{ shortenedURL }}" id="url-result">{{ shortenedURL }}</a>
+                 {% else %}
+                    Enter the URL above and click submit!
+                 {% endif %}
+             </span><br><br>
+
+        {% else %}
+            If you do not see the URL box above you are not a qualified user.
+            Please login with credentials to use the URL shortener.<br><br>
+        {% endif %}
+            Click here to <a href="{% url 'logout' %}">Logout</a>
+     </div>
+  </div>
 {% endblock %}

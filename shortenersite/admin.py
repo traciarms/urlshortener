@@ -1,5 +1,5 @@
 from django.contrib import admin
-from shortenersite.models import Urls
+from shortenersite.models import Urls, UserProfile
 
 
 class UrlsAdmin(admin.ModelAdmin):
@@ -7,5 +7,10 @@ class UrlsAdmin(admin.ModelAdmin):
     ordering = ('-org_date',)
 
 
+class UserProfileAdmin(admin.ModelAdmin):
+    list_display = ('user', 'user_category')
+
+
 admin.site.register(Urls, UrlsAdmin)
+admin.site.register(UserProfile, UserProfileAdmin)
 
